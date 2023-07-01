@@ -14,6 +14,12 @@ function deleteNote(id, notes) {
   writeNotesToFile(notesArray);
   return notesArray;
 }
+function writeNotesToFile(notesArray) {
+    const filePath = path.join(__dirname, '../db/notes.json');
+    const data = JSON.stringify({ notesArray }, null, 2);
+    fs.writeFileSync(filePath, data);
+  }
+  
 
 module.exports = {
   createNewNote,
