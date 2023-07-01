@@ -15,11 +15,16 @@ function deleteNote(id, notes) {
   return notesArray;
 }
 function writeNotesToFile(notesArray) {
-    const filePath = path.join(__dirname, '../db/notes.json');
-    const data = JSON.stringify({ notesArray }, null, 2);
-    fs.writeFileSync(filePath, data);
-  }
-  
+  const filePath = path.join(__dirname, "../db/notes.json");
+  const data = JSON.stringify({ notesArray }, null, 2);
+  fs.writeFileSync(filePath, data);
+}
+
+function reindexNotes(notesArray) {
+  notesArray.forEach((note, index) => {
+    note.id = index;
+  });
+}
 
 module.exports = {
   createNewNote,
