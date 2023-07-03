@@ -1,7 +1,7 @@
 {
   "name": "create-a-note",
   "version": "1.0.0",
-  "description": "",
+  "description": "app to create a note",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
