@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { createNewNote, deleteNote } = require("../../lib/notes");
+const { createNewNote, deleteNote } = require("../../helpers/notes");
 const notesArray = require("../../helpers/notes");
 
 // GET route to retrieve all notes
@@ -14,18 +14,18 @@ router.post("/notes", (req, res) => {
     ...req.body,
   };
 
-  notesArray.push(newNote);
+  createNewNote(newNote, notesArray);
   res.json(newNote);
 });
 
 // DELETE route to delete a note
 router.delete("/notes/:id", (req, res) => {
   const { id } = req.params;
-  const index = notesArray.findIndex((note) => note.id === id);
 
-  if (index !== -1) {
-    const deletedNote = notesArray.splice(index, 1)[0];
-    res.json(deletedNote);
+  const updatedNotesArray = deleteNote(id, notesArray);
+
+  if (updatedNotesArray) {
+    res.json({ success: true });
   } else {
     res.status(404).json({ error: "Note not found" });
   }
