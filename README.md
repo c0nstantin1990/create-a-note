@@ -28,6 +28,7 @@
 ![Initial](/screenshots/initial.jpeg)
 ![Create](/screenshots/create.jpeg)
 ![Save](/screenshots/save.jpeg)
+![Start](/screenshots/start.jpeg)
 
 GitHub Repo: https://github.com/c0nstantin1990/create-a-note
 
