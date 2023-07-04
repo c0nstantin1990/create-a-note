@@ -8,12 +8,13 @@ function createNewNote(body, notesArray) {
   return note;
 }
 
-function deleteNote(id, notes) {
-  const notesArray = notes.filter((el) => el.id != id);
-  reindexNotes(notesArray);
-  writeNotesToFile(notesArray);
-  return notesArray;
+function deleteNote(id, notesArray) {
+  const filteredNotes = notesArray.filter((el) => el.id !== id);
+  reindexNotes(filteredNotes);
+  writeNotesToFile(filteredNotes);
+  return filteredNotes;
 }
+
 function writeNotesToFile(notesArray) {
   const filePath = path.join(__dirname, "../db/notes.json");
   const data = JSON.stringify({ notesArray }, null, 2);
