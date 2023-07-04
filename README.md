@@ -16,12 +16,12 @@
 - [Installation](#installation)
 - [Usage](#usage)
 - [Heroku](#Deployed_website)
+- [Features](#Features)
 
 ## Installation
 
 - npm init (to create node js project)
 - npm i express (to install express)
-- node server.js (to start the server)
 
 ## Usage
 
@@ -34,3 +34,10 @@ GitHub Repo: https://github.com/c0nstantin1990/create-a-note
 ## Deployed_website
 
 https://create-a-note-abc3d1218ba1.herokuapp.com/
+
+## Features
+
+- Creating Notes
+- Deleting Notes
+- Saving Notes
+- Accessing Saved Notes

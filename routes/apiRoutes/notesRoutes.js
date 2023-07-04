@@ -1,25 +1,33 @@
-const express = require("express");
-const router = express.Router();
-const { createNewNote, deleteNoteById } = require("../lib/notes");
-const notesFilePath = require("../db/notes.json");
+const router = require("express").Router();
+const notesArray = require("../../db/notes");
 
-router.get("/", (req, res) => {
-  res.json(notesFilePath.notesArray);
+// GET route to retrieve all notes
+router.get("/notes", (req, res) => {
+  res.json(notesArray);
 });
 
-router.post("/", (req, res) => {
-  const notesArray = notesFilePath.notesArray;
-  const nextId = notesArray.length.toString();
-  req.body.id = nextId;
-  const newNote = createNewNote(req.body, notesArray);
+// POST route to create a new note
+router.post("/notes", (req, res) => {
+  const newNote = {
+    id: notesArray.length.toString(),
+    ...req.body,
+  };
+
+  notesArray.push(newNote);
   res.json(newNote);
 });
 
-router.delete("/:id", async (req, res) => {
+// DELETE route to delete a note
+router.delete("/notes/:id", (req, res) => {
   const { id } = req.params;
-  const notesArray = notesFilePath.notesArray;
-  const updatedNotes = await deleteNoteById(id, notesArray);
-  res.json(updatedNotes);
+  const index = notesArray.findIndex((note) => note.id === id);
+
+  if (index !== -1) {
+    const deletedNote = notesArray.splice(index, 1)[0];
+    res.json(deletedNote);
+  } else {
+    res.status(404).json({ error: "Note not found" });
+  }
 });
 
 module.exports = router;
