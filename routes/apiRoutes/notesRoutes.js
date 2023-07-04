@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { createNewNote, deleteNote } = require("../../helpers/notes");
-const notesArray = require("../../helpers/notes");
+const notesArray = require("../../db/notes");
 
 // GET route to retrieve all notes
 router.get("/notes", (req, res) => {
